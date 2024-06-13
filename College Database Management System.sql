@@ -1,4 +1,142 @@
 use project;
+#view all tables
+select * from finalres;(contains columns likesid varchar(20) 
+name text 
+dept text 
+Year int 
+Current_Sem int 
+sem1 double 
+sem2 double 
+sem3 double 
+sem4 double 
+sem5 double 
+sem6 double 
+sem7 double 
+sem8 double 
+CGPA double 
+backlog int)
+
+select * from hostel_female;(contains columns like regno varchar(30) 
+name varchar(30) 
+dob date 
+dept varchar(20) 
+addr varchar(20) 
+blood_grp varchar(20) 
+fees int 
+paid int 
+bal int 
+hstatus varchar(20))
+
+select * from hostel_male;(contains columns like regno varchar(30) 
+name varchar(30) 
+dob date 
+dept varchar(20) 
+addr varchar(20) 
+blood_grp varchar(20) 
+fees int 
+paid int 
+bal int 
+hstatus varchar(20))
+
+select * from hostel_menu;(contains columns like Day text 
+Breakfast text 
+Lunch text 
+Dinner text)
+
+select * from it_dept_2ndyear_sem2_result1;(contains columns like sid varchar(20) 
+stu_name text 
+Dept text 
+Computer_Architecture text 
+Object_Oriented_Programming text 
+Data_Structures text 
+dbms text 
+Data_Structures_Laboratory text 
+Object_Oriented_Programming_Laboratory text) 
+
+select * from mech_2ndyear_sem3;(contains columns like regno varchar(40) 
+name varchar(90) 
+dept varchar(30) 
+Manufacturing_Technology_Laboratory1 varchar(90) 
+Engineering_Thermodynamics varchar(90) 
+Fluid_Mechanics_and_Machinery varchar(90) 
+Manufacturing_Technology1 varchar(90) 
+Electrical_Drives_and_Control varchar(90) 
+Electrical_Engineering_Laboratory varchar(90) 
+Computer_Aided_and_Machine_Drawing varchar(90))
+
+select * from placement_table;(contains columns like regno varchar(20) 
+Name text 
+Dob text 
+dept text 
+addr text 
+Placed_companies text)
+
+select * from restult;(contains columns like sid text 
+name text 
+dept text 
+Year int 
+Current_Sem int 
+sem1 double 
+sem2 double 
+sem3 double 
+sem4 double 
+sem5 double 
+sem6 double 
+sem7 double 
+sem8 double 
+CGPA double 
+backlog bigint)
+
+select * from sports_table;(contains columns like rno varchar(30) 
+name varchar(20) 
+dept varchar(20) 
+sports_name varchar(20) 
+slevel varchar(20))
+
+select * from staff_hand_sub;(contains columns like sid varchar(20) 
+staff_name varchar(20) 
+dept varchar(20) 
+sem1 varchar(20) 
+sem2 varchar(20) 
+sem3 varchar(30) 
+sem4 varchar(20) 
+sem5 varchar(20) 
+sem6 varchar(20) 
+sem7 varchar(30) 
+sem8 varchar(20))
+
+select * from staff_handling;(contains columns like sid varchar(20) 
+sname text 
+Department text 
+Semester_1 text 
+Semester_2 text 
+Semester_3 text 
+Semester_4 text 
+Semester_5 text 
+Semester_6 text 
+Semester_7 text 
+Semester_8 text)
+
+select * from staff_table;(contains columns like staff_id varchar(20) PK 
+Staff_name text 
+qual text 
+Dept text 
+Salary int 
+Desig text 
+year_of_joining int)
+
+select * from student_table;(contains columns like varchar(30) PK 
+name varchar(20) 
+dob date 
+dept varchar(20) 
+addr varchar(30) 
+blood_grp varchar(10) 
+gender varchar(10) 
+hosteller varchar(20) 
+yyear int 
+current_sem int)
+
+
 -- 1-> who paid less than 50% of fees (in hostel)
 select Dept,count(regno) as students_count
 from hostel_male
@@ -9,8 +147,6 @@ select Dept,count(regno) as students_count
 from hostel_female
 where bal<=25000
 group by dept;
-
-select * from staff_handling;
 
 -- 2->EEE department 3rd semester syllabus 
 select Department,Semester_3
@@ -102,7 +238,6 @@ select * from staff_handling where sid="IT005";
 students who attained above 8 CGPA in the seventh semester 
 and those who excelled in state-level volleybal */
 SELECT s.name, s.sports_name, s.slevel, r.cgpa
-SELECT s.name, s.sports_name, s.slevel, r.cgpa
 FROM sports_table s
 JOIN finalres r ON s.rno = r.sid
 WHERE r.dept = 'mech' 
@@ -123,50 +258,3 @@ select sid,name,dept,toprank
 from highest_rank
 where toprank<=3;
 
-select * from student_table
-where current_sem=4 and dept="eee";
-
-select sid,cgpa from finalres
-where current_sem=8;
-
-select concat("My name is"," ",name," ","I am from"," ",addr) as result
-from student_table;
-select * from student_table;
-
-select name
-from student_table
-where name like "_A_A%";
-
-select max(sal) as maximum_Salary
-from emp;
-select sum(sal) as total,avg(sal) as average 
-from emp;
-
-select count(empid) as no_of_manager
-from emp
-where job="Manager";
-
-select count(empid) as no_of_emp
-from emp
-where job not in ('clerk','analyst') and dept not in (10,20);
-select max(sal) as maximum_sal,min(sal) as minimum_,min(comm) as minimum_sal
-from emp
-where name like "S%" and name not like "A";
-
-select count( dept)as uni_dept
-from student_table; 
-
-select dept,min(current_sem) as yg
-from student_table
-group by dept;
-
-select dept,max(salary) as ad
-from staff_table
-group by dept
-having  max(salary)>10000 and max(salary)<80000;
-select dept,alary as hf
-
-from staff_table
-where desig like "%professor%"
-group by dept
-having min(salary)>50000;
